@@ -40,8 +40,25 @@ if( isset($_POST["register"])){
 </head>
 <body>
     
-<br><br><br><br><br>
+<br><br><br>
+<form action="" method="post">
+    
+<div class="login-card">
+<h1>sign up</h1>  <br>
+  <form>
+    
+    <label for="username"></label>
+    <input type="text" name="username" placeholder="username" id="username" autocomplete="off">
+    <label for="password"></label>
+    <input type="password" name="password" placeholder="password" id="password" >
+    <label for="konfirmasi password"></label>
+	<input id="konfirmasi password" name="konfirmasi password" placeholder="konfirmasi password" type="password">
+    <input type="submit" name="register" class="login login-submit" value="register">
+    
+            <p>Sudah Punya Akun?<a href="login.php"><font color="blue">Klik Disini</font></a></p>
+  </form>
 
+<!--
 <form action="#" method="post">
 <div class="login-card">
   <h1>Sign Up</h1>
@@ -51,10 +68,11 @@ if( isset($_POST["register"])){
 			<input id="password" name="password" placeholder="password" type="password">
 			<label for="konfirmasi password"></label>
 			<input id="konfirmasi password" name="konfirmasi password" placeholder="konfirmasi password" type="password">
-            <button type="submit" name="register">Register</button>
-            <button><a href="login.php">Masuk</a></button>
+            <button type="submit" name="login" class="login login-submit" value="login">Register</button>
+            <br>
+            <p>Sudah Punya Akun?<a href="login.php"><font color="blue">Klik Disini</font></a></p>
 </form>
-
+    -->
 <!--
 <form action="" method="post">
     <ul>

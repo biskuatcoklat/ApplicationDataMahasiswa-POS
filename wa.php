@@ -32,8 +32,8 @@ if(!isset($_SESSION["login"])){
                         </div>
                         <br>
                         <div class ="form-group">
-                            <label for="name">Name</label>
-                            <input type ="text" name="name" class="form-control"  placeholder="Name" autocomplete="off">
+                            <label for="name">Nama</label>
+                            <input type ="text" name="name" class="form-control"  placeholder="Nama" autocomplete="off">
                         </div>
                         <br>
                         <div class="form-group">
@@ -45,7 +45,7 @@ if(!isset($_SESSION["login"])){
                             <label for="jurusan">jurusan</label>
                             <input type="text" class="form-control" name="jurusan" placeholder="jurusan" autocomplete="off"></textarea>
                         </div>
-                        <input type="hidden" name="noWa" value="">
+                        <input type="hidden" name="noWa" value="6282276052469">
                         <br>
                         <button type="submit" name="submit" class="btn btn-primary">send</button>
                     </form>

@@ -13,8 +13,13 @@ include('config.php') ;
 	<div class="container" style="margin-top:20px">
 		<center><font size="6">Data Mahasiswa</font></center>
 		<hr>
+		<?php
+          if($_SESSION["tipe"]=='admin'){ ?>
+              
 		<a href="index.php?page=tambah_mhs"><button class="btn btn-dark right">Tambah Data</button></a>
 		<a href="exportmhs.php"><button class="btn btn-dark right">Export Data</button></a>
+		<?php } ?>
+
 		<form action="index.php" methood="get">
 			<input type="hidden" name="page" value="tampil_mhs">
 			<input type="text" name="cari" size="25" placeholder="masukkan  keyword pencarian..." autocomplete="off" value="<?php echo $_GET['cari'];?>">
@@ -30,7 +35,11 @@ include('config.php') ;
 					<th>Nama Mahasiswa</th>
 					<th>Jenis Kelamin</th>
 					<th>Program Studi</th>
+					<?php
+          if($_SESSION["tipe"]=='admin'){ ?>
+
 					<th>Aksi</th>
+					<?php }?>
 				</tr>
 			</thead>
 			<tbody>
@@ -50,21 +59,30 @@ include('config.php') ;
 					//melakukan perulangan while dengan dari dari query $sql
 					while($data = mysqli_fetch_assoc($sql)){
 						//menampilkan data perulangan
+						
 						echo '
 						<tr>
 							<td>'.$no.'</td>
 							<td>'.$data['Nim'].'</td>
 							<td>'.$data['Nama_Mhs'].'</td>
 							<td>'.$data['Jenis_Kelamin'].'</td>
-							<td>'.$data['Program_Studi'].'</td>
-							<td>
+							<td>'.$data['Program_Studi'].'</td>';
+						if($_SESSION["tipe"]=='admin'){ 
+
+						echo '	<td>
+							
 								<a href="index.php?page=edit_mhs&Nim='.$data['Nim'].'" class="btn btn-secondary btn-sm">Edit</a>
 								<a href="delete.php?Nim='.$data['Nim'].'" class="btn btn-danger btn-sm" onclick="return confirm(\'Yakin ingin menghapus data ini?\')">Delete</a>
-							</td>
+								
+							</td>';
+ } 
+							echo '
 						</tr>
 						';
 						$no++;
+						
 					}
+					
 				//jika query menghasilkan nilai 0
 				}else{
 					echo '
@@ -76,6 +94,9 @@ include('config.php') ;
 				?>
 			<tbody>
 		</table>
+		<?php
+		if($_SESSION["tipe"]=='admin'){ ?>
 		<a href="wa.php"><button class="btn btn-dark right">Input Data Manual</button></a>
+		<?php }?>
 	</div>
 	</div>

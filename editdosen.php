@@ -16,12 +16,12 @@ include('config.php');
 
 		<?php
 		//jika sudah mendapatkan parameter GET id dari URL
-		if(isset($_GET['Nim'])){
+		if(isset($_GET['id'])){
 			//membuat variabel $id untuk menyimpan id dari GET id di URL
-			$Nim = $_GET['Nim'];
+			$id = $_GET['id'];
 
 			//query ke database SELECT tabel mahasiswa berdasarkan id = $id
-			$select = mysqli_query($koneksi, "SELECT * FROM mahasiswa WHERE Nim='$Nim'") or die(mysqli_error($koneksi));
+			$select = mysqli_query($koneksi, "SELECT * FROM dosen WHERE id='$id'") or die(mysqli_error($koneksi));
 
 			//jika hasil query = 0 maka muncul pesan error
 			if(mysqli_num_rows($select) == 0){
@@ -38,52 +38,51 @@ include('config.php');
 		<?php
 		//jika tombol simpan di tekan/klik
 		if(isset($_POST['submit'])){
-			$Nim  = $_POST['Nim'];
-			$Nama_Mhs			  = $_POST['Nama_Mhs'];
-			$Jenis_Kelamin	= $_POST['Jenis_Kelamin'];
-			$Program_Studi	= $_POST['Program_Studi'];
+			$id			= $_POST['id'];
+			$Nama_dosen			= $_POST['Nama_dosen'];
+			$Mata_kuliah	= $_POST['Mata_kuliah'];
+			$No_hp		= $_POST['No_hp'];
+            $Email    =$_POST['Email'];
 
-			$sql = mysqli_query($koneksi, "UPDATE mahasiswa SET Nim='$Nim',Nama_Mhs='$Nama_Mhs', Jenis_Kelamin='$Jenis_Kelamin', Program_Studi='$Program_Studi' WHERE Nim='$Nim'") or die(mysqli_error($koneksi));
+			$sql = mysqli_query($koneksi, "UPDATE dosen SET id='$id',Nama_dosen='$Nama_dosen', Mata_kuliah='$Mata_kuliah', No_hp='$No_hp', Email='$Email' WHERE id='$id'") or die(mysqli_error($koneksi));
 
 			if($sql){
-				echo '<script>alert("Berhasil menyimpan data."); document.location="index.php?page=tampil_mhs";</script>';
+				echo '<script>alert("Berhasil menyimpan data."); document.location="index.php?page=tampil_dsn";</script>';
 			}else{
 				echo '<div class="alert alert-warning">Gagal melakukan proses edit data.</div>';
 			}
 		}
 		?>
-		<?php
-		if($_SESSION["tipe"]=='admin'){ ?>
-		<form action="index.php?page=edit_mhs&Nim=<?php echo $Nim; ?>" method="post">
+
+		<form action="index.php?page=edit_dsn&id=<?php echo $id; ?>" method="post">
 			<div class="item form-group">
-				<label class="col-form-label col-md-3 col-sm-3 label-align">Nim</label>
+				<label class="col-form-label col-md-3 col-sm-3 label-align">No</label>
 				<div class="col-md-6 col-sm-6">
-					<input type="text" autocomplete="off" name="Nim" class="form-control" size="4" value="<?php echo $data['Nim']; ?>" readonly required >
+					<input type="text" autocomplete="off" name="id" class="form-control" size="4" value="<?php echo $data['Nim']; ?>" readonly required >
 				</div>
 			</div>
 			<div class="item form-group">
-				<label class="col-form-label col-md-3 col-sm-3 label-align">Nama Mahasiswa</label>
+				<label class="col-form-label col-md-3 col-sm-3 label-align">Nama Dosen</label>
 				<div class="col-md-6 col-sm-6">
-					<input type="text" autocomplete="off" name="Nama_Mhs" class="form-control" value="<?php echo $data['Nama_Mhs']; ?>" required>
+					<input type="text" autocomplete="off" name="Nama_dosen" class="form-control" value="<?php echo $data['Nama_dosen']; ?>" required>
 				</div>
 			</div>
 			<div class="item form-group">
-				<label class="col-form-label col-md-3 col-sm-3 label-align">Jenis Kelamin</label>
+				<label class="col-form-label col-md-3 col-sm-3 label-align">Email</label>
 				<div class="col-md-6 col-sm-6 ">
-					<div class="btn-group" data-toggle="buttons">
-						<label class="btn btn-secondary" data-toggle-class="btn-primary" data-toggle-passive-class="btn-default">
-							<input type="radio" class="join-btn" name="Jenis_Kelamin" value="Laki-Laki" <?php if($data['Jenis_Kelamin'] == 'Laki-Laki'){ echo 'checked'; } ?> required>Laki-Laki
-						</label>
-						<label class="btn btn-primary" data-toggle-class="btn-primary" data-toggle-passive-class="btn-default">
-							<input type="radio" class="join-btn" name="Jenis_Kelamin" value="Perempuan" <?php if($data['Jenis_Kelamin'] == 'Perempuan'){ echo 'checked'; } ?> required>Perempuan
-						</label>
-					</div>
+                    <input type="text" autocomplete="off" name="Email" class="form-control" value="<?php echo $data['Email']; ?>" required>
+				</div>
+			</div>
+            <div class="item form-group">
+				<label class="col-form-label col-md-3 col-sm-3 label-align">No Hp</label>
+				<div class="col-md-6 col-sm-6 ">
+                    <input type="text" autocomplete="off" name="No_hp" class="form-control" value="<?php echo $data['No_hp']; ?>" required>
 				</div>
 			</div>
 			<div class="item form-group">
-				<label class="col-form-label col-md-3 col-sm-3 label-align">Program Studi</label>
+				<label class="col-form-label col-md-3 col-sm-3 label-align">Mata kuliah</label>
 				<div class="col-md-6 col-sm-6">
-					<select name="Program_Studi" class="form-control" required>
+					<select name="Mata_kuliah" class="form-control" required>
 						<option value="">Pilih Program Studi</option>
 						<option value="Teknik Informatika" <?php if($data['Program_Studi'] == 'Teknik Informatika'){ echo 'selected'; } ?>>Teknik Informatika</option>
 						<option value="Teknik Sipil" <?php if($data['Program_Studi'] == 'Teknik Sipil'){ echo 'selected'; } ?>>Teknik Sipil</option>
@@ -100,10 +99,8 @@ include('config.php');
 			<div class="item form-group">
 				<div class="col-md-6 col-sm-6 offset-md-3">
 					<input type="submit" name="submit" class="btn btn-primary" value="Simpan">
-					<a href="index.php?page=tampil_mhs" class="btn btn-warning">Kembali</a>
-					
+					<a href="index.php?page=tampil_dsn" class="btn btn-warning">Kembali</a>
 				</div>
 			</div>
 		</form>
-		<?php }?>
 	</div>

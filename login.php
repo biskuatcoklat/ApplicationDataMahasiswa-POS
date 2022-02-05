@@ -18,6 +18,7 @@ if(isset($_POST["login"])){
         $row = mysqli_fetch_assoc($result);
 
         $_SESSION["login"] = true;
+        $_SESSION["tipe"] = $row["tipe"];
         if(password_verify($password, $row["password"])){
             header("location: index.php");
             exit;
@@ -61,9 +62,8 @@ if(isset($_POST["login"])){
     <input type="submit" name="login" class="login login-submit" value="login">
   </form>
     
-  <div class="login-help">
-    <a href="registrasi.php">Register</a> 
-  </div>
+  
+    <p>Belum Punya Akun?<a href="registrasi.php"><font color="blue">Klik Disini</font></a></p>
 </div>
 
 

@@ -61,7 +61,10 @@ if(!isset($_SESSION["login"])){
             <br />
 
             <!-- sidebar menu -->
-  
+          <?php
+          if($_SESSION["tipe"]=='admin'){ ?>
+
+          
             <div id="sidebar-menu" class="main_menu_side hidden-print main_menu">
               <div class="menu_section">
                 <ul class="nav side-menu">
@@ -74,22 +77,53 @@ if(!isset($_SESSION["login"])){
                       <li><a href="index.php?page=tambah_mhs">Tambah Data</a></li>
                     </ul>
                   </li>
-                  <li><a><i class="fa fa-desktop"></i> Data Dosen <span class="fa fa-chevron-down"></span></a>
+                  <li><a href="#"><i class="fa fa-desktop"></i> Data Dosen <span class="fa fa-chevron-down"></span></a>
                     <ul class="nav child_menu">
-                      <li><a href="#">Tampil Data</a></li>
-                      <li><a href="#">Tambah Data</a></li>
+                      <li><a href="index.php?page=tampil_dsn">Tampil Data</a></li>
+                      <li><a href="index.php?page=tambah_dsn">Tambah Data</a></li>
                     </ul>
                   </li>
                   <li><a><i class="fa fa-gear"></i> Settings <span class="fa fa-chevron-down"></span></a>
                     <ul class="nav child_menu">
-                      <li><a href="#">Settings 1</a></li>
-                      <li><a href="#">Settings 2</a></li>
+                      <li><a href="index.php?page=help_us">Help</a></li>
+                      <li><a href="#">Settings</a></li>
                     </ul>
                   </li>
                 </ul>
               </div>
             </div>
             <!-- /sidebar menu -->
+
+            <?php }elseif($_SESSION["tipe"]=='user'){ 
+              ?>
+              <div id="sidebar-menu" class="main_menu_side hidden-print main_menu">
+              <div class="menu_section">
+                <ul class="nav side-menu">
+                  <li><a href="index.php"><i class="fa fa-home"></i> Home <span class="fa fa-chevron"></span></a>
+                  </li>
+                  <li><a href="#"><i class="fa fa-desktop"></i> Data Mahasiswa <span class="fa fa-chevron-down"></span></a>
+                    <ul class="nav child_menu">
+                      
+                      <li><a href="index.php?page=tampil_mhs">Tampil Data</a></li>
+                    </ul>
+                  </li>
+                  <li><a href="#"><i class="fa fa-desktop"></i> Data Dosen <span class="fa fa-chevron-down"></span></a>
+                    <ul class="nav child_menu">
+                      <li><a href="index.php?page=tampil_dsn">Tampil Data</a></li>
+             
+                    </ul>
+                  </li>
+                  <li><a><i class="fa fa-gear"></i> Settings <span class="fa fa-chevron-down"></span></a>
+                    <ul class="nav child_menu">
+                      <li><a href="index.php?page=help_us">Help</a></li>
+                      <li><a href="#">Settings</a></li>
+                    </ul>
+                  </li>
+                </ul>
+              </div>
+            </div>
+            <!-- /sidebar menu -->
+              <?php } ?>
 
             <!-- /menu footer buttons -->
             <div class="sidebar-footer hidden-small">
@@ -160,6 +194,26 @@ if(!isset($_SESSION["login"])){
           		# code...
           include 'edit.php';
           break;
+          case 'tampil_dsn':
+            # code...
+            include 'tampildosen.php';
+            break;
+          case 'tambah_dsn':
+            # code...
+            include 'tambahdosen.php';
+            break;
+        case 'edit_dsn':
+        		# code...
+        	include 'editdosen.php';
+        	break;
+        case 'tampil_dsn_save':
+            # code...
+          include 'editdosen.php';
+          break;
+        case 'help_us':
+            # code...
+          include 'help.php';
+          break;
         default:
 		          #code...
 		      include 'home.php';
@@ -169,13 +223,13 @@ if(!isset($_SESSION["login"])){
         </div>
         <!-- /page content -->
 
-        <!-- footer content -->
+        <!-- footer content 
         <footer>
           <div class="pull-center">
             Copyright @ 2022 Aplikasi Data Mahasiswa : Wahyu Aprilliandhika
           </div>
           <div class="clearfix"></div>
-        </footer>
+        </footer> -->
         <!-- /footer content -->
       </div>
     </div>

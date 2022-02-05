@@ -33,7 +33,7 @@ function registrasi($data){
 		return false;
 	}
 	$password = password_hash($password, PASSWORD_DEFAULT);
-	mysqli_query($koneksi, "INSERT INTO user VALUES('','$username','$password')");
+	mysqli_query($koneksi, "INSERT INTO user VALUES('','$username','$password','user')");
 	return mysqli_affected_rows($koneksi);
 }
 //cek jika koneksi ke mysql gagal, maka akan tampil pesan berikut
