@@ -45,7 +45,7 @@ if(!isset($_SESSION["login"])){
                             <label for="jurusan">jurusan</label>
                             <input type="text" class="form-control" name="jurusan" placeholder="jurusan" autocomplete="off"></textarea>
                         </div>
-                        <input type="hidden" name="noWa" value="6282276052469">
+                        <input type="hidden" name="noWa" value="#">
                         <br>
                         <button type="submit" name="submit" class="btn btn-primary">send</button>
                     </form>
