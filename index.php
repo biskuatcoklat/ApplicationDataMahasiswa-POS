@@ -51,10 +51,21 @@ if(!isset($_SESSION["login"])){
               <div class="profile_pic">
                 <img src="assets/images/user.png" alt="..." class="img-circle profile_img">
               </div>
+	      <?php
+              if($_SESSION["tipe"]=='admin'){ ?>
               <div class="profile_info">
                 <span>Welcome,</span>
-                <h2>Wahyu Aprilliandhika</h2>
+                <h2>Admin</h2>
               </div>
+	      <?php } ?>
+		<?php
+              if($_SESSION["tipe"]=='user'){ ?>
+              <div class="profile_info">
+                <span>Welcome,</span>
+                <h2>User</h2>
+              </div>
+              <?php } ?>
+   
             </div>
             <!-- /menu profile quick info -->
 
